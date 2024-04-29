@@ -33,24 +33,7 @@ $unique_id = wp_unique_id( 'p-' );
 		data-wp-bind--hidden="!context.isOpen"
 	>
 		<?php
-			esc_html_e( 'Menthoring Sessions:', 'mentoring-sessions' );
+			esc_html_e( 'Menthoring Sessions - hello from an interactive block!', 'mentoring-sessions' );
 		?>
 	</p>
-	<?php 
-		$args = [
-			'post_type' => 'menthoring_session',
-			'posts_per_page' => -1,
-			'order' => 'ASC',
-			'orderby' => 'date',
-			'publishe_status' => 'publish',
-			'date_query'=>[
-				'after' => date('Y-m-d'),
-				'inclusive' => true
-			]
-
-		];
-
-		$posts = new WP_Query($args);
-		var_dump( $posts );
-	?>
 </div>
