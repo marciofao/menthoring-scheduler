@@ -33,3 +33,11 @@ function msd_add_template_page_select( $post_templates, $wp_theme, $post, $post_
 
     return $post_templates;
 }
+
+add_filter( 'init', 'ms_chsck_submit');
+function ms_chsck_submit() {
+    if ( isset( $_POST['menthoring-scheduler'] ) ) {
+        require_once(plugin_dir_path(__FILE__).'process-scheduler-submit.php');
+    }
+}
+
