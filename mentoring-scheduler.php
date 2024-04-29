@@ -3,9 +3,9 @@
 //wp plugin
 
 /**
- * Plugin Name: Menthoring session scheduler
+ * Plugin Name: Mentoring session scheduler
  * Plugin URI: https://github.com/marciofao/menthoring-scheduler
- * Description: Plugin for scheduling menthoring sessions
+ * Description: Plugin for scheduling mentoring sessions
  * Version: 0.0.1
  * Author: Marcio Fão
  * Author URI: https://github.com/marciofao
@@ -35,9 +35,11 @@ function msd_add_template_page_select( $post_templates, $wp_theme, $post, $post_
     return $post_templates;
 }
 
-add_filter( 'init', 'ms_chsck_submit');
-function ms_chsck_submit() {
+add_filter( 'init', 'ms_check_submit');
+function ms_check_submit() {
     if ( isset( $_POST['menthoring-scheduler'] ) ) {
         require_once('process-scheduler-submit.php');
     }
 }
+
+require_once('setup-widget.php');
