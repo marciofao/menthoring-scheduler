@@ -1,16 +1,22 @@
 
+<?php global $post; ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php wp_title() ?></title>
+    <title><?php echo get_the_title() ?></title>
     <?php wp_head() ?>
     <link rel="stylesheet" href="<?php echo plugin_dir_url( __FILE__ ) ?>css/bootstrap.css">
 </head>
 <body>
+    
     <div class="container">
+        <div class="row">
+            <h1><?php echo get_the_title() ?></h1>
+            <?php the_content() ?>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <?php if(!isset($_GET['appointment-saved'])): ?>
@@ -38,6 +44,9 @@
                 </form>
                 <?php else: ?>
                     <h2 class="text-center">Appointment Saved Sucessfully!</h2>
+                    <div class="text-center">
+                        <a href="<?php echo site_url().'/'.$post->post_name ?>">Add new appointment</a>
+                    </div>
                 <?php endif ?>
             </div>
         </div>

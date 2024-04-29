@@ -41,22 +41,3 @@ function ms_chsck_submit() {
         require_once('process-scheduler-submit.php');
     }
 }
-
-require_once(plugin_dir_path(__FILE__).'widget-display-scheduled.php');
-
-
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
-}
-
-/**
- * Registers the block using the metadata loaded from the `block.json` file.
- * Behind the scenes, it registers also all assets so they can be enqueued
- * through the block editor in the corresponding context.
- *
- * @see https://developer.wordpress.org/reference/functions/register_block_type/
- */
-function ms_mentoring_sessions_block_init() {
-	register_block_type_from_metadata( __DIR__ . '/build' );
-}
-add_action( 'init', 'ms_mentoring_sessions_block_init' );
