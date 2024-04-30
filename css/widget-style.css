@@ -1,0 +1,5 @@
+.widget li:first-child, .widget li {
+    margin-top: 2rem;
+    
+    box-sizing: border-box;
+}

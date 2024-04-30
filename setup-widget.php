@@ -6,13 +6,9 @@ class ms_widget extends WP_Widget
     function __construct()
     {
         parent::__construct(
-            // Base ID of your widget
+            
             'ms_widget',
-
-            // Widget name will appear in UI
             __('Scheduled Sessions', 'ms'),
-
-            // Widget description
             [
                 'description' => __('This Widget  will display all scheduled sessions', 'ms'),
             ]
@@ -22,6 +18,7 @@ class ms_widget extends WP_Widget
     // Creating widget front-end
     public function widget($args, $instance)
     {
+        date_default_timezone_set('America/Sao_Paulo');
         $title = apply_filters('widget_title', $instance['title']);
         $number_of_posts = apply_filters('number_of_posts', $instance['number_of_posts']);
         
@@ -31,11 +28,11 @@ class ms_widget extends WP_Widget
             echo $args['before_title'] . $title . $args['after_title'];
         }
 
-        // This is where you run the code and display the output
+        // display the output
         echo __('Scheduled Mentoring Sessions', 'ms');
         $posts = get_posts([
             'post_type' => 'appointment',
-            'posts_per_page' => -1,
+            'posts_per_page' => $number_of_posts,
             'post_status' => 'publish',
             'orderby' => 'meta_value',
             'order'=>'asc',
@@ -48,23 +45,30 @@ class ms_widget extends WP_Widget
             ],
         ]);
 
+        wp_enqueue_style('widget-style', plugin_dir_url(__FILE__) . 'css/widget-style.css', array(), '1.0', 'all');
+        ?>
+       
+        <div class="grid ">
+        <?php
         foreach ($posts as $appointment) {
             $ap_date = get_post_meta($appointment->ID, 'appointment_date', true);
             $date = new DateTimeImmutable($ap_date);
             
 ?>  
-            <div class="mentoring-item">
+            
+            <div class="mentoring-item border border-dark p-3">
                 <h4><?php echo $appointment->post_title ?></h4>
                 
                 <p>Date: <?php echo $date->format('m/d/Y'). ' ' . get_post_meta($appointment->ID, 'appointment_time', true); ?></p>
                 <p>Notes: <?php echo $appointment->post_content ?></p>
             </div>
+           
 
         <?php
         }
-        // echo '<pre>';
-        //         var_dump( $posts );
-
+        ?>  
+         </ul>
+        <?php
         echo $args['after_widget'];
     }
 
