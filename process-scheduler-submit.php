@@ -2,17 +2,17 @@
 
 
         // Sanitize and validate form data
-        $date = sanitize_text_field($_POST['ms_date']);
-        $time = sanitize_text_field($_POST['ms_time']);
-        $name = sanitize_text_field($_POST['ms_name']);
-        $notes = sanitize_textarea_field($_POST['notes']);
+        $date  = sanitize_text_field($_POST['ms_date']);
+        $time  = sanitize_text_field($_POST['ms_time']);
+        $name  = sanitize_text_field($_POST['ms_name']);
+        $notes = sanitize_textarea_field($_POST['ms_notes']);
 
         // Create custom post type 'appointment'
         $post_id = wp_insert_post(array(
-            'post_title' => $name . ' Appointment',
+            'post_title'   => $name,
             'post_content' => $notes,
-            'post_status' => 'publish',
-            'post_type' => 'appointment'
+            'post_status'  => 'publish',
+            'post_type'    => 'appointment'
         ));
 
         // Add custom fields (meta data)
