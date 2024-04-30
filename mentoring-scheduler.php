@@ -43,3 +43,11 @@ function ms_check_submit() {
 }
 
 require_once('setup-widget.php');
+
+function ms_enqueue_styles() {
+   
+    wp_enqueue_style('bootstrap', plugin_dir_url(__FILE__) . '/css/bootstrap.css', array(), '1.0', 'all');
+}
+
+add_action('wp_enqueue_scripts', 'ms_enqueue_styles');
+
