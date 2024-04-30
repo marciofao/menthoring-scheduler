@@ -3,9 +3,9 @@ document.getElementById('appointmentForm').addEventListener('submit', function(e
      var inputDate = document.getElementById('date').value;
      // Get current date and also fix js date offset issue
      var currentDate = new Date();
-     const year = currentDate.getUTCFullYear();
-     const month = (currentDate.getUTCMonth() + 1).toString().padStart(2, '0');
-     const day = currentDate.getUTCDate()
+     const year = currentDate.getFullYear();
+     const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+     const day = currentDate.getDate()
      //formatted yyyy-mm-dd
     currentDate = `${year}-${month}-${day}`;
     
@@ -22,8 +22,6 @@ document.getElementById('appointmentForm').addEventListener('submit', function(e
         var inputTime = document.getElementById('time').value;
         var currentTime = getCurrentTime();
         
-        console.log(inputTime);
-        console.log(currentTime);
         // Check if the input time is earlier than the current time
         if (inputTime <= currentTime) {
             alert("Please select a time later than the current time.");
