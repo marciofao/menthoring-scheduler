@@ -59,7 +59,7 @@ class ms_widget extends WP_Widget
             <div class="mentoring-item border border-dark p-3">
                 <h4><?php echo $appointment->post_title ?></h4>
                 
-                <p>Date: <?php echo $date->format('m/d/Y'). ' ' . get_post_meta($appointment->ID, 'appointment_time', true); ?></p>
+                <p>Date: <?php echo $date->format('m/d/Y h:m'). ' ' . get_post_meta($appointment->ID, 'appointment_time', true); ?></p>
                 <p>Notes: <?php echo $appointment->post_content ?></p>
             </div>
            

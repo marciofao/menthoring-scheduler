@@ -17,8 +17,7 @@
 
         // Add custom fields (meta data)
         if (!is_wp_error($post_id)) {
-            update_post_meta($post_id, 'appointment_date', $date);
-            update_post_meta($post_id, 'appointment_time', $time);
+            update_post_meta($post_id, 'appointment_date', $date.' '.$time);
         }
 
         // Return response
